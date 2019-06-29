@@ -42,8 +42,8 @@ class RestaurauntDetailView(RetrieveAPIView):
 class QueueView(APIView):
 	def get(self, request):
 		obj = request.data
-		restaurant = Restaurant.objects.get(id = obj['restaurant'])
-		queue = Queue.objects.filter(restaurant= restaurant)
+		# restaurant = Restaurant.objects.get(id = obj['restaurant'])
+		queue = Queue.objects.filter(user= request.user.id)
 
 		return Response(QueueListSerializer(queue, many=True).data)
 		
